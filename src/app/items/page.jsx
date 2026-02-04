@@ -64,15 +64,13 @@ export default function ItemsSimple() {
   }
 
   return (
-    <main style={{ 
-  fontFamily: "'Pirata One', system-ui", 
-  fontWeight: "400", 
-  fontStyle: "normal" 
-}} className="bg-[#080808] text-white font-sans selection:bg-white selection:text-black">
-      {/* Fixed Navigation */}
+    <main
+      style={{ fontFamily: "var(--font-display)" }}
+      className="bg-[var(--background)] text-white font-sans"
+    >
       <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-baseline mix-blend-difference">
-        <Link href="/" className="text-xs tracking-[0.5em] hover:line-through transition-all uppercase">Home</Link>
-        <div className="text-[9px] tracking-[0.3em] opacity-50 uppercase">Scroll to Explore</div>
+        <Link href="/" className="text-xs tracking-[0.5em] hover:text-[var(--accent)] transition-colors uppercase font-medium">Home</Link>
+        <div className="text-[9px] tracking-[0.3em] text-white/50 uppercase font-medium">Scroll to Explore</div>
       </nav>
 
       {/* Projects List */}
@@ -80,10 +78,9 @@ export default function ItemsSimple() {
         <ProjectSection key={item.id} item={item} index={index} />
       ))}
 
-      {/* Footer Section */}
-      <footer className="h-[50vh] flex flex-col items-center justify-center border-t border-white/5">
-        <h2 className="text-[15vw] font-bold opacity-5 select-none tracking-tighter">FINISH</h2>
-        <Link href="/" className="text-xs tracking-[1em] mt-[-2vw] hover:text-gray-400 transition-colors uppercase">
+      <footer className="h-[50vh] flex flex-col items-center justify-center border-t border-[var(--border)]">
+        <h2 className="text-[15vw] font-bold opacity-5 select-none tracking-tight">FINISH</h2>
+        <Link href="/" className="text-xs tracking-[1em] mt-[-2vw] hover:text-[var(--accent)] transition-colors uppercase font-medium">
           Back to Start
         </Link>
       </footer>

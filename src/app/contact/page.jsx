@@ -38,31 +38,26 @@ export default function Contact() {
   };
 
   return (
-    <div style={{ 
-  fontFamily: "'Pirata One', system-ui", 
-  fontWeight: "400", 
-  fontStyle: "normal" 
-}} className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
-      
-      {/* Hero Header */}
-      <section className="relative pt-44 pb-20 px-6 md:px-20 border-b border-white/5">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          <span className="text-[10px] tracking-[0.8em] text-gray-500 uppercase mb-6 block italic">
+    <div
+      style={{ fontFamily: "var(--font-display)" }}
+      className="min-h-screen bg-[var(--background)] text-white font-sans"
+    >
+      <section className="relative pt-44 pb-20 px-6 md:px-20 border-b border-[var(--border)]">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+          <span className="text-[10px] tracking-[0.7em] text-[var(--muted)] uppercase mb-6 block font-medium">
             Connection_Initialization
           </span>
-          <h1 className="text-6xl md:text-[10vw] font-bold leading-[0.85] tracking-tighter uppercase mb-10">
-            Let's <br />
-            <span className="text-transparent border-y-[1px] border-white/20">Collaborate</span>
+          <h1 className="text-5xl md:text-[10vw] font-bold leading-[0.88] tracking-tight uppercase mb-10">
+            Let&apos;s <br />
+            <span className="text-[var(--accent)]">Collaborate</span>
           </h1>
         </motion.div>
       </section>
 
       <div className="grid lg:grid-cols-12 gap-0">
-        
-        {/* Contact Form Section */}
-        <section className="lg:col-span-7 py-24 px-6 md:px-20 bg-white text-black">
+        <section className="lg:col-span-7 py-24 px-6 md:px-20 bg-white text-[#0a0a0a]">
           <motion.div {...fadeInUp} className="max-w-xl">
-            <h2 className="text-[10px] tracking-[0.5em] text-gray-400 uppercase font-bold mb-16 italic underline underline-offset-8">Inquiry_Form</h2>
+            <h2 className="text-[10px] tracking-[0.5em] text-[#737373] uppercase font-semibold mb-16">Inquiry_Form</h2>
             
             {success ? (
               <motion.div 
@@ -140,20 +135,19 @@ export default function Contact() {
           </motion.div>
         </section>
 
-        {/* Contact Info Section */}
-        <section className="lg:col-span-5 py-24 px-6 md:px-20 bg-[#0a0a0a] border-l border-white/5 flex flex-col justify-between">
+        <section className="lg:col-span-5 py-24 px-6 md:px-20 bg-[var(--surface)] border-l border-[var(--border)] flex flex-col justify-between">
           <motion.div {...fadeInUp} className="space-y-20">
             <div>
-              <h3 className="text-[10px] tracking-[0.5em] text-gray-600 uppercase mb-8 italic underline underline-offset-8">Access_Points</h3>
+              <h3 className="text-[10px] tracking-[0.5em] text-[var(--muted)] uppercase mb-8 font-medium">Access_Points</h3>
               <div className="space-y-12">
                 {[
-                  { label: "Email", info: "hello@studio-siners.com" },
+                  { label: "Email", info: "hello@studio-sinners.com" },
                   { label: "Direct_Line", info: "+880 1XXX XXXXXX" },
                   { label: "Location", info: "Dhaka Node, Bangladesh" }
                 ].map((item, i) => (
                   <div key={i} className="group cursor-pointer">
-                    <span className="text-[9px] text-gray-700 uppercase tracking-widest block mb-2">{item.label}</span>
-                    <span className="text-xl font-bold tracking-tighter uppercase group-hover:text-blue-500 transition-colors">
+                    <span className="text-[9px] text-[#525252] uppercase tracking-widest block mb-2 font-medium">{item.label}</span>
+                    <span className="text-xl font-bold tracking-tight uppercase group-hover:text-[var(--accent)] transition-colors duration-200">
                       {item.info}
                     </span>
                   </div>
@@ -170,17 +164,16 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          <div className="mt-20 lg:mt-0 pt-10 border-t border-white/5 opacity-30">
-             <span className="text-[8px] tracking-[0.5em] uppercase italic underline underline-offset-8">Studio_Siners_MXXVI</span>
+          <div className="mt-20 lg:mt-0 pt-10 border-t border-[var(--border)] text-[var(--muted)]">
+             <span className="text-[8px] tracking-[0.5em] uppercase font-medium">Studio_Sinners_MXXVI</span>
           </div>
         </section>
 
       </div>
 
-      {/* Footer Info */}
-      <footer className="py-10 px-6 md:px-20 flex justify-between items-center opacity-20 text-[8px] tracking-[0.5em] uppercase border-t border-white/5 bg-white text-black">
+      <footer className="py-10 px-6 md:px-20 flex justify-between items-center text-[var(--muted)] text-[8px] tracking-[0.5em] uppercase border-t border-[var(--border)] bg-white text-[#0a0a0a] font-medium">
         <span>ESTD // 2026</span>
-        <span>Studio_Siners // Contact_Gateway</span>
+        <span>Studio_Sinners // Contact_Gateway</span>
       </footer>
     </div>
   );

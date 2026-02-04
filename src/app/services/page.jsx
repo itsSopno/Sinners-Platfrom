@@ -39,26 +39,23 @@ export default function Services() {
   ];
 
   return (
-    <div style={{ 
-  fontFamily: "'Pirata One', system-ui", 
-  fontWeight: "400", 
-  fontStyle: "normal" 
-}} className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
-      
-      {/* Hero Section */}
-      <section className="relative pt-44 pb-24 px-6 md:px-20 border-b border-white/5 overflow-hidden">
+    <div
+      style={{ fontFamily: "var(--font-display)" }}
+      className="min-h-screen bg-[var(--background)] text-white font-sans"
+    >
+      <section className="relative pt-44 pb-24 px-6 md:px-20 border-b border-[var(--border)] overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10"
         >
-          <span className="text-[10px] tracking-[0.8em] text-gray-500 uppercase mb-6 block">
+          <span className="text-[10px] tracking-[0.7em] text-[var(--muted)] uppercase mb-6 block font-medium">
             Expertise_Systems
           </span>
-          <h1 className="text-6xl md:text-[10vw] font-bold leading-[0.85] tracking-tighter uppercase mb-12">
+          <h1 className="text-5xl md:text-[10vw] font-bold leading-[0.88] tracking-tight uppercase mb-12">
             Technical <br />
-            <span className="text-transparent border-y-[1px] border-white/20">Solutions</span> <br />
+            <span className="text-[var(--accent)]">Solutions</span> <br />
             For_Scale
           </h1>
         </motion.div>
@@ -67,7 +64,7 @@ export default function Services() {
       {/* Services List: High-Impact List Style */}
       <section className="py-20 px-6 md:px-20 bg-white text-black">
         <div className="mb-20">
-          <h2 className="text-[10px] tracking-[0.5em] text-gray-400 uppercase font-bold italic underline underline-offset-8">Core_Expertise</h2>
+          <h2 className="text-[10px] tracking-[0.5em] text-[#737373] uppercase font-semibold">Core_Expertise</h2>
         </div>
 
         <div className="space-y-1">
@@ -105,11 +102,10 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Methodology Section: Dark Mode Contrast */}
-      <section className="py-32 px-6 md:px-20 border-t border-white/5">
+      <section className="py-32 px-6 md:px-20 border-t border-[var(--border)]">
         <div className="grid md:grid-cols-12 gap-10">
           <motion.div {...fadeInUp} className="md:col-span-4">
-            <h2 className="text-[10px] tracking-[0.5em] text-gray-600 uppercase italic">How_We_Sync</h2>
+            <h2 className="text-[10px] tracking-[0.5em] text-[var(--muted)] uppercase font-medium">How_We_Sync</h2>
           </motion.div>
           <motion.div {...fadeInUp} className="md:col-span-8">
             <div className="grid md:grid-cols-2 gap-12">
@@ -120,9 +116,9 @@ export default function Services() {
                 { step: "Optimize", desc: "Continuous monitoring and refinement of digital assets." }
               ].map((proc, i) => (
                 <div key={i} className="space-y-4">
-                  <div className="text-[10px] font-mono text-blue-500">PHASE_0{i+1}</div>
+                  <div className="text-[10px] font-mono text-[var(--accent)]">PHASE_0{i+1}</div>
                   <h4 className="text-xl font-bold uppercase tracking-tight text-white">{proc.step}</h4>
-                  <p className="text-gray-500 text-xs leading-relaxed italic">{proc.desc}</p>
+                  <p className="text-[var(--muted-foreground)] text-xs leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>{proc.desc}</p>
                 </div>
               ))}
             </div>
@@ -146,10 +142,9 @@ export default function Services() {
         </motion.div>
       </section>
 
-      {/* Minimal Footer Info */}
-      <footer className="py-10 px-6 md:px-20 flex justify-between items-center opacity-20 text-[8px] tracking-[0.5em] uppercase border-t border-white/5">
+      <footer className="py-10 px-6 md:px-20 flex justify-between items-center text-[var(--muted)] text-[8px] tracking-[0.5em] uppercase border-t border-[var(--border)] font-medium">
         <span>Region: Dhaka_Node</span>
-        <span>Studio_Siners_v2.0 // Services</span>
+        <span>Studio_Sinners // Services</span>
       </footer>
     </div>
   );

@@ -1,12 +1,6 @@
-"use client";
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { useEffect, useState } from "react";
-import { SessionProvider } from "next-auth/react";
-import Navbar from "./navbar/navbar";
-import Loading from "./Loading/page";
-import { AppProvider } from "../contexts/AppContext";
+import ClientRoot from "./ClientRoot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,38 +12,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  title: "Studio Sinners — Strategic Digital Laboratory",
+  description:
+    "We engineer high-performance web experiences that bridge the gap between human emotion and digital precision. Brand identity, experience design, and system architecture.",
+  openGraph: {
+    title: "Studio Sinners — Strategic Digital Laboratory",
+    description: "Building digital legacies. Brand identity, experience design, system architecture.",
+  },
+};
+
 export default function RootLayout({ children }) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <html lang="en">
-        <body>
-          <Loading />
-        </body>
-      </html>
-    );
-  }
-
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased rounded-tr-4xl rounded-tl-4xl`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
-        <SessionProvider>
-          <AppProvider>
-            <Navbar />
-            {children}
-          </AppProvider>
-        </SessionProvider>
+        <ClientRoot>{children}</ClientRoot>
       </body>
     </html>
   );

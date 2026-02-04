@@ -194,42 +194,38 @@ export default function Loading() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans overflow-hidden">
-      
-      {/* Background Watermark */}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[var(--background)] text-white font-sans overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
-        <h1 className="text-[25vw] font-bold tracking-tighter uppercase">Siners</h1>
+        <h1 className="text-[25vw] font-bold tracking-tight uppercase" style={{ fontFamily: "var(--font-display)" }}>Sinners</h1>
       </div>
 
       <div className="w-full max-w-[500px] px-10 relative z-10">
-        
-        {/* Top Header */}
         <div className="flex justify-between items-end mb-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="flex flex-col"
+            style={{ fontFamily: "var(--font-display)" }}
           >
-            <h2 className="text-xs font-bold tracking-[0.6em] uppercase leading-none">Studio_Siners</h2>
-            <span className="text-[8px] text-gray-600 tracking-[0.4em] uppercase mt-2 italic font-mono">Systems_Check_Initiated</span>
+            <h2 className="text-xs font-semibold tracking-[0.6em] uppercase leading-none">Studio_Sinners</h2>
+            <span className="text-[8px] text-[var(--muted)] tracking-[0.4em] uppercase mt-2 font-mono">Systems_Check_Initiated</span>
           </motion.div>
-          
+
           <div className="text-right">
             <span className="text-5xl font-bold font-mono leading-none tracking-tighter">
-              {count.toString().padStart(3, '0')}
+              {count.toString().padStart(3, "0")}
             </span>
             <span className="text-[10px] font-bold ml-1 opacity-20">%</span>
           </div>
         </div>
 
-        {/* Progress Bar: Minimalist Version */}
-        <div className="h-[1px] w-full bg-white/5 relative">
+        <div className="h-px w-full bg-white/5 relative">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${count}%` }}
             transition={{ ease: "linear" }}
-            className="absolute top-0 left-0 h-full bg-white shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+            className="absolute top-0 left-0 h-full bg-[var(--accent)] shadow-[0_0_20px_var(--accent-muted)]"
           />
         </div>
 
@@ -260,12 +256,10 @@ export default function Loading() {
         </div>
       </div>
 
-      {/* Static Footer Elements */}
-      <div className="absolute bottom-12 left-10 md:left-20 text-[7px] text-gray-700 tracking-[0.6em] uppercase font-mono">
+      <div className="absolute bottom-12 left-10 md:left-20 text-[7px] text-[var(--muted)] tracking-[0.6em] uppercase font-mono font-medium">
         MXXVI // DHAKA_NODE // V.4.0.2
       </div>
-      
-      <div className="absolute bottom-12 right-10 md:right-20 text-[7px] text-gray-700 tracking-[0.6em] uppercase font-mono">
+      <div className="absolute bottom-12 right-10 md:right-20 text-[7px] text-[var(--muted)] tracking-[0.6em] uppercase font-mono font-medium">
         ESTD_2026
       </div>
     </div>

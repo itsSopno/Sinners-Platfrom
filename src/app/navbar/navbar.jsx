@@ -34,78 +34,89 @@ const Navbar = () => {
 
   return (
     <>
-      <header 
+      <header
         ref={navRef}
-        style={{ 
-  fontFamily: "'Pirata One', system-ui", 
-  fontWeight: "400", 
-  fontStyle: "normal" 
-}} className="fixed top-0 left-0 w-full z-[100] px-6 py-8 md:px-12 flex justify-between items-center mix-blend-difference text-white"
+        style={{ fontFamily: "var(--font-display)" }}
+        className="fixed top-0 left-0 w-full z-[100] px-6 py-8 md:px-12 flex justify-between items-center mix-blend-difference text-white"
       >
-        {/* Brand Logo */}
         <Link href="/" className="group flex flex-col">
-          <span className="text-sm font-bold tracking-[0.5em] leading-none uppercase">Studio</span>
-          <span className="text-sm font-bold tracking-[0.5em] leading-none uppercase text-gray-500 group-hover:text-white transition-colors">Siners</span>
+          <span className="text-sm font-semibold tracking-[0.4em] leading-none uppercase">Studio</span>
+          <span className="text-sm font-semibold tracking-[0.4em] leading-none uppercase text-white/60 group-hover:text-[var(--accent)] transition-colors duration-300">
+            Sinners
+          </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-12">
+        <nav className="hidden md:flex items-center space-x-10">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className={`text-[10px] tracking-[0.4em] uppercase transition-all duration-300 hover:opacity-50 ${
-                pathname === link.href ? "line-through decoration-white/50" : ""
+              className={`relative text-[10px] tracking-[0.35em] uppercase font-medium transition-all duration-300 hover:text-[var(--accent)] ${
+                pathname === link.href ? "text-[var(--accent)]" : ""
               }`}
             >
               {link.name}
+              {pathname === link.href && (
+                <span className="absolute -bottom-1 left-0 w-full h-px bg-[var(--accent)]" />
+              )}
             </Link>
           ))}
-          
+
           {session ? (
-            <div className="flex items-center gap-6 border-l border-white/20 pl-8">
-              <Link href="/add-item" className="text-[9px] tracking-[0.3em] opacity-40 hover:opacity-100 uppercase transition-opacity">Add_Work</Link>
-              <button onClick={handleLogout} className="text-white opacity-40 hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-6 border-l border-white/20 pl-8 ml-2">
+              <Link
+                href="/add-item"
+                className="text-[9px] tracking-[0.3em] text-white/60 hover:text-[var(--accent)] uppercase transition-colors duration-200"
+              >
+                Add_Work
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="text-white/60 hover:text-white transition-colors duration-200"
+                aria-label="Sign out"
+              >
                 <FiLogOut className="w-4 h-4" />
               </button>
             </div>
           ) : (
-            <Link 
+            <Link
               href="/login"
-              className="text-[10px] tracking-[0.4em] border border-white/20 px-5 py-2 rounded-full hover:bg-white hover:text-black transition-all uppercase"
+              className="text-[10px] tracking-[0.35em] border border-white/25 px-5 py-2.5 rounded-full hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-[var(--accent-foreground)] transition-all duration-300 uppercase font-medium"
             >
               Access_System
             </Link>
           )}
         </nav>
 
-        {/* Mobile Toggle */}
-        <button 
-          className="md:hidden text-white" 
+        <button
+          className="md:hidden text-white p-2 -mr-2"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </header>
 
-      {/* Fullscreen Mobile Menu */}
-      <div className={`fixed inset-0 bg-[#080808] z-[90] flex flex-col justify-center items-center transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] ${isOpen ? "translate-y-0" : "-translate-y-full"}`}>
+      <div
+        className={`fixed inset-0 bg-[var(--background)] z-[90] flex flex-col justify-center items-center transition-transform duration-500 ease-[var(--ease-out-expo)] ${isOpen ? "translate-y-0" : "-translate-y-full"}`}
+        style={{ fontFamily: "var(--font-display)" }}
+      >
         <div className="flex flex-col space-y-8 text-center">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-4xl font-bold tracking-tighter uppercase hover:text-gray-500 transition-colors"
+              className="text-3xl md:text-4xl font-bold tracking-tight uppercase text-white hover:text-[var(--accent)] transition-colors duration-200"
             >
               {link.name}
             </Link>
           ))}
           {!session && (
-            <Link 
-              href="/login" 
+            <Link
+              href="/login"
               onClick={() => setIsOpen(false)}
-              className="text-xs tracking-[1em] opacity-50 uppercase pt-10"
+              className="text-xs tracking-[0.8em] text-white/50 hover:text-[var(--accent)] uppercase pt-10 transition-colors"
             >
               Login
             </Link>

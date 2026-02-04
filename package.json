@@ -1,7 +1,8 @@
 {
-  "name": "next-part1",
-  "version": "0.1.0",
+  "name": "studio-sinners",
+  "version": "1.0.0",
   "private": true,
+  "description": "Studio Sinners — Strategic Digital Laboratory. High-performance web experiences and digital legacies.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
