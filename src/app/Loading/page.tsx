@@ -34,7 +34,7 @@ export default function Loading() {
             className="flex flex-col"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            <h2 className="text-xs font-semibold tracking-[0.6em] uppercase leading-none">Studio_Sinners</h2>
+            <h2 className="text-xs font-semibold galgo-font tracking-[0.6em] uppercase leading-none">Studio_Sinners</h2>
             <span className="text-[8px] text-[var(--muted)] tracking-[0.4em] uppercase mt-2 font-mono">Systems_Check_Initiated</span>
           </motion.div>
 

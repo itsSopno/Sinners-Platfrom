@@ -103,7 +103,7 @@ export default function About(): React.JSX.Element {
       {/* Team Section: Minimal List Style */}
       <section className="py-32 px-6 md:px-20 border-t border-white/5">
         <div className="flex justify-between items-end mb-20">
-          <motion.h2 {...fadeInUp} className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">
+          <motion.h2 {...fadeInUp} className="text-4xl md:text-7xl galgo-font  font-bold tracking-tighter uppercase">
             Architects_
           </motion.h2>
           <span className="text-[10px] tracking-[0.5em] text-gray-600 uppercase mb-4">Core_Team_v2.6</span>

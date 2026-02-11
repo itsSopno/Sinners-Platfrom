@@ -71,14 +71,14 @@ body {
 }
 
 @font-face {
-  font-family: 'Dirtyline';
-  src: url('../Font/Dirtyline\ 36daysoftype\ 2022.woff') format('woff2'),
-       url('../Font/Dirtyline\ 36daysoftype\ 2022.woff2') format('woff');
+  font-family: 'Misto';
+  src: url('../Font/Misto.woff') format('woff2'),
+       url('../Font/Misto.woff2') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 .galgo-font {
-  font-family: 'Dirtyline', sans-serif;
+  font-family: 'Misto', sans-serif;
 }

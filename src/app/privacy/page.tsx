@@ -41,7 +41,7 @@ export default function Privacy(): React.JSX.Element {
         
         {/* Header Section */}
         <header className="mb-24 border-b border-[var(--border)] pb-12">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-none">
+          <h1 className="text-5xl md:text-7xl galgo-font font-bold mb-6 tracking-tight leading-none">
             Privacy Protocol
           </h1>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -89,7 +89,7 @@ export default function Privacy(): React.JSX.Element {
                 <div className="flex items-center gap-4 mb-6">
                   <span className="text-gray-700 font-mono text-sm">0{index + 1}</span>
                   <div className="h-[1px] w-8 bg-white/20"></div>
-                  <h3 className="text-xl font-bold uppercase tracking-[0.2em] group-hover:text-[var(--accent)] transition-colors duration-200">
+                  <h3 className="text-xl font-bold galgo-font uppercase tracking-[0.2em] group-hover:text-[var(--accent)] transition-colors duration-200">
                     {section.title}
                   </h3>
                 </div>

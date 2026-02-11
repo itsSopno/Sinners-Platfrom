@@ -145,7 +145,7 @@ export default function Services(): React.JSX.Element {
       <section className="py-40 px-6 md:px-20 bg-white text-black text-center">
         <motion.div {...fadeInUp}>
           <span className="text-[9px] tracking-[1em] text-gray-400 uppercase mb-10 block">System_Input_Needed</span>
-          <h2 className="text-5xl md:text-[10vw] font-bold tracking-tighter uppercase leading-none mb-12">
+          <h2 className="text-5xl md:text-[10vw] galgo-font font-bold tracking-tighter uppercase leading-none mb-12">
             Ready_To_Build?
           </h2>
           <Link href="/contact" className="inline-block group">

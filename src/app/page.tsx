@@ -150,7 +150,7 @@ export default function Home() {
       <footer className="pt-32 pb-16 md:pb-20 px-6 md:px-20 border-t border-[var(--border)]">
         <div className="text-center mb-32">
           <motion.div {...fadeInUp}>
-            <h2 className="text-[10vw] md:text-[12vw] font-bold tracking-[var(--tracking-display)] uppercase leading-none mb-8">
+            <h2 className="text-[10vw] md:text-[12vw] galgo-font font-bold tracking-[var(--tracking-display)] uppercase leading-none mb-8">
               Let&apos;s_Sync
             </h2>
             <Link
