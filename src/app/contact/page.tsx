@@ -1,24 +1,37 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface ContactInfo {
+  label: string;
+  info: string;
+}
+
+export default function Contact(): React.JSX.Element {
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     subject: "",
     message: ""
   });
-  const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 2000));
@@ -34,8 +47,14 @@ export default function Contact() {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
   };
+
+  const contactInfo: ContactInfo[] = [
+    { label: "Email", info: "hello@studio-sinners.com" },
+    { label: "Direct_Line", info: "+880 1XXX XXXXXX" },
+    { label: "Location", info: "Dhaka Node, Bangladesh" }
+  ];
 
   return (
     <div
@@ -47,7 +66,7 @@ export default function Contact() {
           <span className="text-[10px] tracking-[0.7em] text-[var(--muted)] uppercase mb-6 block font-medium">
             Connection_Initialization
           </span>
-          <h1 className="text-5xl md:text-[10vw] font-bold leading-[0.88] tracking-tight uppercase mb-10">
+          <h1 className="text-5xl md:text-[10vw] galgo-font ont-bold leading-[0.88] tracking-tight uppercase mb-10">
             Let&apos;s <br />
             <span className="text-[var(--accent)]">Collaborate</span>
           </h1>
@@ -140,11 +159,7 @@ export default function Contact() {
             <div>
               <h3 className="text-[10px] tracking-[0.5em] text-[var(--muted)] uppercase mb-8 font-medium">Access_Points</h3>
               <div className="space-y-12">
-                {[
-                  { label: "Email", info: "hello@studio-sinners.com" },
-                  { label: "Direct_Line", info: "+880 1XXX XXXXXX" },
-                  { label: "Location", info: "Dhaka Node, Bangladesh" }
-                ].map((item, i) => (
+                {contactInfo.map((item, i) => (
                   <div key={i} className="group cursor-pointer">
                     <span className="text-[9px] text-[#525252] uppercase tracking-widest block mb-2 font-medium">{item.label}</span>
                     <span className="text-xl font-bold tracking-tight uppercase group-hover:text-[var(--accent)] transition-colors duration-200">

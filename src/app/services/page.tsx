@@ -1,17 +1,30 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function Services() {
+interface Service {
+  id: string;
+  title: string;
+  desc: string;
+  details: string[];
+}
+
+interface Process {
+  step: string;
+  desc: string;
+}
+
+export default function Services(): React.JSX.Element {
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
   };
 
-  const services = [
+  const services: Service[] = [
     {
       id: "01",
       title: "System Architecture",
@@ -38,6 +51,13 @@ export default function Services() {
     }
   ];
 
+  const processes: Process[] = [
+    { step: "Discovery", desc: "Deep dive into your system requirements and business goals." },
+    { step: "Architect", desc: "Designing a custom blueprint for scalability and performance." },
+    { step: "Deploy", desc: "Precision implementation with rigorous testing protocols." },
+    { step: "Optimize", desc: "Continuous monitoring and refinement of digital assets." }
+  ];
+
   return (
     <div
       style={{ fontFamily: "var(--font-display)" }}
@@ -53,7 +73,7 @@ export default function Services() {
           <span className="text-[10px] tracking-[0.7em] text-[var(--muted)] uppercase mb-6 block font-medium">
             Expertise_Systems
           </span>
-          <h1 className="text-5xl md:text-[10vw] font-bold leading-[0.88] tracking-tight uppercase mb-12">
+          <h1 className="text-5xl md:text-[10vw] galgo-font font-bold leading-[0.88] tracking-tight uppercase mb-12">
             Technical <br />
             <span className="text-[var(--accent)]">Solutions</span> <br />
             For_Scale
@@ -109,12 +129,7 @@ export default function Services() {
           </motion.div>
           <motion.div {...fadeInUp} className="md:col-span-8">
             <div className="grid md:grid-cols-2 gap-12">
-              {[
-                { step: "Discovery", desc: "Deep dive into your system requirements and business goals." },
-                { step: "Architect", desc: "Designing a custom blueprint for scalability and performance." },
-                { step: "Deploy", desc: "Precision implementation with rigorous testing protocols." },
-                { step: "Optimize", desc: "Continuous monitoring and refinement of digital assets." }
-              ].map((proc, i) => (
+              {processes.map((proc, i) => (
                 <div key={i} className="space-y-4">
                   <div className="text-[10px] font-mono text-[var(--accent)]">PHASE_0{i+1}</div>
                   <h4 className="text-xl font-bold uppercase tracking-tight text-white">{proc.step}</h4>

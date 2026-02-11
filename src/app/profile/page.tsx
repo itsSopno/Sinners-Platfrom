@@ -1,16 +1,29 @@
 "use client";
 
+import React from "react";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useApp } from "../../contexts/AppContext";
 
-export default function Profile() {
+interface Tab {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+interface WishlistItem {
+  id: string;
+  name: string;
+  price: number;
+}
+
+export default function Profile(): React.JSX.Element {
   const { data: session, status } = useSession();
   const router = useRouter();
   const { cartItemsCount, wishlist } = useApp();
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState<string>('overview');
 
   useEffect(() => {
     if (status === 'loading') return;
@@ -22,7 +35,7 @@ export default function Profile() {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" as const }
   };
 
   if (status === 'loading') {
@@ -41,10 +54,10 @@ export default function Profile() {
   }
 
   if (!session) {
-    return null;
+    return <></>;
   }
 
-  const tabs = [
+  const tabs: Tab[] = [
     { id: 'overview', name: 'Overview', icon: '👤' },
     { id: 'orders', name: 'Orders', icon: '🛍️' },
     { id: 'wishlist', name: 'Wishlist', icon: '❤️' },
@@ -179,7 +192,7 @@ export default function Profile() {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {wishlist.slice(0, 3).map((item) => (
+                      {wishlist.slice(0, 3).map((item: WishlistItem) => (
                         <div key={item.id} className="flex items-center space-x-4 p-4 bg-white/5 rounded-lg border border-white/10">
                           <div className="w-16 h-16 bg-gray-600 rounded-lg"></div>
                           <div className="flex-1">

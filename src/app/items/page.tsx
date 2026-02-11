@@ -5,12 +5,24 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
+interface Item {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  image: string;
+  category: string;
+  year: string;
+  tech: string[];
+  approach: string;
+}
+
 export default function ItemsSimple() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const mockItems = [
+    const mockItems: Item[] = [
       {
         id: 1,
         name: "DOG STUDIO CLONE",
@@ -88,7 +100,12 @@ export default function ItemsSimple() {
   );
 }
 
-const ProjectSection = ({ item, index }) => {
+interface ProjectSectionProps {
+  item: Item;
+  index: number;
+}
+
+const ProjectSection = ({ item, index }: ProjectSectionProps) => {
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-center items-center py-32 px-6 md:px-20 border-b border-white/5 overflow-hidden">
       

@@ -6,7 +6,11 @@ import Navbar from "./navbar/navbar";
 import Loading from "./Loading/page";
 import { AppProvider } from "../contexts/AppContext";
 
-export default function ClientRoot({ children }) {
+interface ClientRootProps {
+  children: React.ReactNode;
+}
+
+export default function ClientRoot({ children }: ClientRootProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

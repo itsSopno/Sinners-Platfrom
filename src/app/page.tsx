@@ -10,7 +10,7 @@ export default function Home() {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
   };
 
   const staggerContainer = {
@@ -39,10 +39,10 @@ export default function Home() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10"
         >
-          <span className="text-[10px] tracking-[0.7em] text-[var(--muted)] uppercase mb-6 block font-medium">
+          <span className="text-[10px]  tracking-[0.7em] text-[var(--muted)] uppercase mb-6 block font-medium">
             Strategic Digital Laboratory
           </span>
-          <h1 className="text-5xl md:text-[11vw] font-bold leading-[0.88] tracking-[var(--tracking-display)] uppercase mb-10">
+          <h1 className="text-5xl md:text-[11vw] font-bold  galgo-font  leading-[0.88] tracking-[var(--tracking-display)] uppercase mb-10">
             Building <br />
             <span className="text-outline">Digital</span> <br />
             Legacies

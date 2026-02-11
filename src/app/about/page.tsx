@@ -1,15 +1,39 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function About() {
+export default function About(): React.JSX.Element {
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
   };
+
+  interface TeamMember {
+    name: string;
+    role: string;
+    focus: string;
+  }
+
+  interface Value {
+    title: string;
+    desc: string;
+  }
+
+  const teamMembers: TeamMember[] = [
+    { name: "Sarah Johnson", role: "Principal Strategist", focus: "Architecture" },
+    { name: "Mike Chen", role: "Lead Engineer", focus: "Systems" },
+    { name: "Emma Davis", role: "Creative Director", focus: "Aesthetics" }
+  ];
+
+  const values: Value[] = [
+    { title: "Radical_Honesty", desc: "We tell you what you need to hear, not what you want to hear. Results require truth." },
+    { title: "Technical_Superiority", desc: "Every project is a benchmark. We use the most advanced tech stacks available." },
+    { title: "Human_Emotion", desc: "Precision without soul is empty. We design for humans, not just algorithms." }
+  ];
 
   return (
     <div style={{ 
@@ -36,9 +60,9 @@ export default function About() {
           <span className="text-[10px] tracking-[0.8em] text-gray-500 uppercase mb-6 block">
             Who_We_Are
           </span>
-          <h1 className="text-6xl md:text-[10vw] font-bold leading-[0.85] tracking-tighter uppercase mb-12">
+          <h1 className="text-6xl md:text-[10vw] galgo-font font-bold leading-[0.85] tracking-tighter uppercase mb-12">
             The_Mind <br />
-            <span className="text-transparent border-y-[1px] border-white/20">Behind</span> <br />
+            <span className=" border-y-[1px] border-white/20">Behind</span> <br />
             The_System
           </h1>
         </motion.div>
@@ -86,11 +110,7 @@ export default function About() {
         </div>
 
         <div className="space-y-1">
-          {[
-            { name: "Sarah Johnson", role: "Principal Strategist", focus: "Architecture" },
-            { name: "Mike Chen", role: "Lead Engineer", focus: "Systems" },
-            { name: "Emma Davis", role: "Creative Director", focus: "Aesthetics" }
-          ].map((member, i) => (
+          {teamMembers.map((member, i) => (
             <motion.div 
               key={i}
               {...fadeInUp}
@@ -112,11 +132,7 @@ export default function About() {
       {/* Values: Brutalist Grid */}
       <section className="py-32 px-6 md:px-20 bg-white text-black">
         <div className="grid md:grid-cols-3 gap-16 md:gap-px bg-black/10 border-y border-black/10">
-          {[
-            { title: "Radical_Honesty", desc: "We tell you what you need to hear, not what you want to hear. Results require truth." },
-            { title: "Technical_Superiority", desc: "Every project is a benchmark. We use the most advanced tech stacks available." },
-            { title: "Human_Emotion", desc: "Precision without soul is empty. We design for humans, not just algorithms." }
-          ].map((val, i) => (
+          {values.map((val, i) => (
             <motion.div 
               key={i} 
               {...fadeInUp}
@@ -133,7 +149,7 @@ export default function About() {
       <section className="py-40 px-6 md:px-20 text-center">
         <motion.div {...fadeInUp}>
           <span className="text-[9px] tracking-[1em] text-gray-600 uppercase mb-10 block">End_Of_Document</span>
-          <h2 className="text-5xl md:text-[10vw] font-bold tracking-tighter uppercase leading-none mb-10">
+          <h2 className="text-5xl md:text-[10vw] galgo-font font-bold tracking-tighter uppercase leading-none mb-10">
             Join_Our_Legacy
           </h2>
           <Link href="/contact" className="group flex flex-col items-center">

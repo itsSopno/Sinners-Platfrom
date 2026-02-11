@@ -1,11 +1,66 @@
 "use client";
 
-import { createContext, useContext, useReducer, useEffect } from 'react';
+import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 
-const AppContext = createContext();
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image?: string;
+}
+
+interface WishlistItem {
+  id: string;
+  name: string;
+  price: number;
+  image?: string;
+}
+
+interface User {
+  id: string;
+  name?: string;
+  email?: string;
+}
+
+interface AppState {
+  cart: CartItem[];
+  user: User | null;
+  searchQuery: string;
+  selectedCategory: string;
+  wishlist: WishlistItem[];
+}
+
+type AppAction =
+  | { type: 'ADD_TO_CART'; payload: CartItem }
+  | { type: 'REMOVE_FROM_CART'; payload: string }
+  | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
+  | { type: 'CLEAR_CART' }
+  | { type: 'ADD_TO_WISHLIST'; payload: WishlistItem }
+  | { type: 'REMOVE_FROM_WISHLIST'; payload: string }
+  | { type: 'SET_USER'; payload: User | null }
+  | { type: 'SET_SEARCH_QUERY'; payload: string }
+  | { type: 'SET_SELECTED_CATEGORY'; payload: string };
+
+interface AppContextType extends AppState {
+  dispatch: React.Dispatch<AppAction>;
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+  clearCart: () => void;
+  addToWishlist: (item: WishlistItem) => void;
+  removeFromWishlist: (id: string) => void;
+  setUser: (user: User | null) => void;
+  setSearchQuery: (query: string) => void;
+  setSelectedCategory: (category: string) => void;
+  cartTotal: number;
+  cartItemsCount: number;
+}
+
+const AppContext = createContext<AppContextType | undefined>(undefined);
 
 // Initial state
-const initialState = {
+const initialState: AppState = {
   cart: [],
   user: null,
   searchQuery: '',
@@ -14,7 +69,7 @@ const initialState = {
 };
 
 // Reducer function
-function appReducer(state, action) {
+function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case 'ADD_TO_CART':
       const existingItem = state.cart.find(item => item.id === action.payload.id);
@@ -93,7 +148,11 @@ function appReducer(state, action) {
   }
 }
 
-export function AppProvider({ children }) {
+interface AppProviderProps {
+  children: ReactNode;
+}
+
+export function AppProvider({ children }: AppProviderProps) {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   // Load cart from localStorage on mount
@@ -103,14 +162,14 @@ export function AppProvider({ children }) {
     
     if (savedCart) {
       const cartItems = JSON.parse(savedCart);
-      cartItems.forEach(item => {
+      cartItems.forEach((item: CartItem) => {
         dispatch({ type: 'ADD_TO_CART', payload: item });
       });
     }
     
     if (savedWishlist) {
       const wishlistItems = JSON.parse(savedWishlist);
-      wishlistItems.forEach(item => {
+      wishlistItems.forEach((item: WishlistItem) => {
         dispatch({ type: 'ADD_TO_WISHLIST', payload: item });
       });
     }
@@ -126,7 +185,7 @@ export function AppProvider({ children }) {
     localStorage.setItem('creative-store-wishlist', JSON.stringify(state.wishlist));
   }, [state.wishlist]);
 
-  const value = {
+  const value: AppContextType = {
     ...state,
     dispatch,
     // Helper functions

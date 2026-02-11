@@ -1,18 +1,28 @@
 "use client";
 
+import React from "react";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function ItemsSimple() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+interface Item {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+}
+
+export default function ItemsSimple(): React.JSX.Element {
+  const [items, setItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     console.log("Simple Items component mounted");
     
-    const mockItems = [
+    const mockItems: Item[] = [
       {
         id: 1,
         name: "Premium Wireless Headphones",

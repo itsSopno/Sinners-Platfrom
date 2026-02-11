@@ -1,22 +1,31 @@
 "use client";
 
+import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 
-export default function AddItem() {
+interface FormData {
+  name: string;
+  description: string;
+  price: string;
+  category: string;
+  image: string;
+}
+
+export default function AddItem(): React.JSX.Element {
   const { data: session, status } = useSession();
-  const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState({
+  const [loading, setLoading] = useState<boolean>(true);
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     description: "",
     price: "",
     category: "",
     image: ""
   });
-  const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +38,7 @@ export default function AddItem() {
     }
   }, [session, status, router]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -37,7 +46,7 @@ export default function AddItem() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setSubmitting(true);
 
@@ -85,7 +94,7 @@ export default function AddItem() {
   }
 
   if (!session) {
-    return null; // Will redirect to login
+    return <></>; // Will redirect to login
   }
 
   return (

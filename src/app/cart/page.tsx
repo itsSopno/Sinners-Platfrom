@@ -11,7 +11,7 @@ export default function Cart() {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" as const }
   };
 
   const staggerContainer = {
@@ -32,7 +32,7 @@ export default function Cart() {
               Your Cart is Empty
             </h1>
             <p className="text-xl text-gray-400 mb-8">
-              Looks like you haven't added anything to your cart yet.
+              Looks like you haven&apos;t added anything to your cart yet.
             </p>
             <Link
               href="/items"
@@ -76,20 +76,21 @@ export default function Cart() {
                   <div className="flex flex-col md:flex-row gap-6">
                     {/* Product Image */}
                     <div className="relative w-full md:w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        className="object-cover"
-                      />
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                        />
+                      )}
                     </div>
 
                     {/* Product Details */}
                     <div className="flex-1 space-y-4">
                       <div>
                         <h3 className="text-xl font-bold text-white mb-2">{item.name}</h3>
-                        <p className="text-gray-400 text-sm line-clamp-2">{item.description}</p>
-                        <div className="text-purple-400 font-semibold mt-2">{item.category}</div>
+                        <div className="text-purple-400 font-semibold mt-2">Category</div>
                       </div>
 
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

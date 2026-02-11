@@ -1,9 +1,15 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 
-export default function Privacy() {
-  const sections = [
+interface Section {
+  title: string;
+  content: string;
+}
+
+export default function Privacy(): React.JSX.Element {
+  const sections: Section[] = [
     {
       title: "Data Intelligence & Collection",
       content: "Studio Sinners collects information through direct interaction, including project briefs, administrative portal access, and cryptographic session logs. This includes identity data (name, email), technical data (IP addresses, browser fingerprints), and project-specific assets required for digital architecting."

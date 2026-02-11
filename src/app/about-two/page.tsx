@@ -1,13 +1,14 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 
-export default function About() {
+export default function About(): React.JSX.Element {
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
   };
 
   return (
@@ -27,7 +28,7 @@ export default function About() {
             <span className="text-[10px] tracking-[0.6em] text-[#737373] uppercase mb-8 block font-semibold">
               Agency_Manifesto
             </span>
-            <h2 className="text-6xl md:text-8xl font-bold leading-[0.85] tracking-tighter uppercase mb-10">
+            <h2 className="text-6xl md:text-8xl galgo-font font-bold leading-[0.85] tracking-tighter uppercase mb-10">
               Defining <br />
               Digital <br />
               <span className="text-[var(--accent)] font-semibold">Authority.</span>

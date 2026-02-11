@@ -8,7 +8,7 @@ import { useSession, signOut } from "next-auth/react";
 import { FiLogOut, FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
-  const navRef = useRef(null);
+  const navRef = useRef<HTMLElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const { data: session } = useSession();
