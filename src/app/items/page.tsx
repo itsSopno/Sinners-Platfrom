@@ -1,12 +1,191 @@
+// "use client";
+
+// import { useState, useEffect, useRef } from "react";
+// import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+// import Image from "next/image";
+
+// interface Item {
+//   _id: string;
+//   name: string;
+//   description: string;
+//   price: string;
+//   image: string;
+//   category: string;
+//   year: string;
+//   tech: string[];
+//   approach: string;
+// }
+
+// export default function ExperimentalShowcase() {
+//   const [items, setItems] = useState<Item[]>([]);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     fetch("https://server-1-1-6g3a.onrender.com/items")
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setItems(data);
+//         setLoading(false);
+//       });
+//   }, []);
+
+//   if (loading) return <LoadingSequence />;
+
+//   return (
+//     <div className="bg-[#050505] text-[#fafafa] selection:bg-white selection:text-black min-h-screen">
+      
+//       {/* 1. MINIMALIST NAV (Strictly Functional) */}
+//       {/* <nav className="fixed top-0 left-0 w-full p-8 flex justify-between items-center z-[100] pointer-events-auto mix-blend-difference">
+//         <div className="text-[10px] font-bold tracking-[0.8em] uppercase cursor-pointer group">
+//           Archive<span className="opacity-0 group-hover:opacity-100 transition-opacity">.2026</span>
+//         </div>
+//         <div className="flex gap-12 items-center">
+//           <div className="hidden md:flex gap-6">
+//             <span className="text-[9px] uppercase tracking-widest opacity-30 italic">Active_Server_Connection</span>
+//           </div>
+//           <button className="w-8 h-8 flex flex-col justify-center gap-1.5 group">
+//             <div className="w-full h-[1px] bg-white transition-all group-hover:w-1/2" />
+//             <div className="w-full h-[1px] bg-white transition-all" />
+//           </button>
+//         </div>
+//       </nav> */}
+
+//       <main>
+//         {/* 2. DYNAMIC HERO */}
+//         <section className="h-[80vh] galgo-font flex flex-col items-center justify-center text-center px-4">
+//           <motion.p 
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             className="text-[10px] uppercase tracking-[1em] mb-10 opacity-30"
+//           >
+//             Curated Digital Assets
+//           </motion.p>
+//           <motion.h1 
+//             initial={{ y: 100, opacity: 0 }}
+//             animate={{ y: 0, opacity: 1 }}
+//             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+//             className="text-[12vw] font-bold uppercase tracking-tighter leading-none"
+//           >
+//             Experience<br />System
+//           </motion.h1>
+//         </section>
+
+//         {/* 3. EXPERIMENTAL SHOWCASE LIST */}
+//         <div className="pb-40">
+//           {items.map((item, index) => (
+//             <ProjectSection key={item._id} item={item} index={index} />
+//           ))}
+//         </div>
+//       </main>
+
+//       <footer className="h-screen flex flex-col items-center justify-center border-t border-white/5">
+//         <span className="text-[10px] tracking-[2em] uppercase opacity-20 mb-10">Get in touch</span>
+//         <h2 className="text-[10vw] font-bold uppercase tracking-tighter hover:italic transition-all cursor-pointer">Hello@Archive</h2>
+//       </footer>
+//     </div>
+//   );
+// }
+
+// const ProjectSection = ({ item, index }: { item: Item; index: number }) => {
+//   const ref = useRef(null);
+//   const { scrollYProgress } = useScroll({
+//     target: ref,
+//     offset: ["start end", "end start"]
+//   });
+
+//   const xText = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
+//   const springX = useSpring(xText, { stiffness: 100, damping: 30 });
+
+//   return (
+//     <section ref={ref} className="relative py-40 overflow-hidden border-b border-white/5 group">
+      
+//       {/* Background Scrolling Text (The Creativity) */}
+//       <motion.div 
+//         style={{ x: springX }}
+//         className="absolute top-1/2 -translate-y-1/2 left-0 whitespace-nowrap opacity-[0.03] pointer-events-none select-none z-0"
+//       >
+//         <span className="text-[25vw] galgo-font font-bold uppercase tracking-tighter">
+//           {item.name} • {item.name} • {item.name}
+//         </span>
+//       </motion.div>
+
+//       <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+        
+//         {/* INFO SIDE */}
+//         <div className="lg:col-span-5 space-y-8 order-2 lg:order-1">
+//           <div className="flex items-center gap-4">
+//             <span className="text-[10px] font-mono text-white/30">0{index + 1}</span>
+//             <div className="h-[1px] w-10 bg-white/20" />
+//             <span className="text-[10px] tracking-[0.5em] uppercase text-white/50">{item.category}</span>
+//           </div>
+          
+//           <h3 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none group-hover:italic transition-all duration-700">
+//             {item.name}
+//           </h3>
+
+//           <p className="text-gray-400 text-xs md:text-sm uppercase tracking-widest leading-loose max-w-sm">
+//             {item.description}
+//           </p>
+
+//           <div className="flex items-center gap-10 pt-6">
+//             <div className="text-3xl font-light tracking-tighter">${item.price}</div>
+//             <button className="h-12 px-8 border border-white/10 text-[9px] uppercase tracking-[0.5em] hover:bg-white hover:text-black transition-all">
+//               Initialize_Acquisition
+//             </button>
+//           </div>
+//         </div>
+
+//         {/* IMAGE SIDE (Floating Effect) */}
+//         <div className="lg:col-span-7 order-1 lg:order-2">
+//           <motion.div 
+//             whileHover={{ scale: 1.02 }}
+//             className="relative aspect-[16/10] grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden"
+//           >
+//              <Image 
+//               src={item.image} 
+//               alt={item.name} 
+//               fill 
+//               className="object-cover transition-transform duration-1000 scale-110 group-hover:scale-100"
+//             />
+//             {/* Tech Overlay */}
+//             <div className="absolute top-4 right-4 flex flex-col gap-2">
+//               {item.tech.map((t, i) => (
+//                 <span key={i} className="text-[8px] bg-black/80 backdrop-blur-md text-white px-3 py-1 uppercase tracking-tighter">
+//                   {t}
+//                 </span>
+//               ))}
+//             </div>
+//           </motion.div>
+//         </div>
+
+//       </div>
+//     </section>
+//   );
+// };
+
+// const LoadingSequence = () => (
+//   <div className="h-screen bg-[#050505] flex items-center justify-center">
+//     <div className="flex flex-col items-center gap-6">
+//        <div className="w-16 h-[1px] bg-white/20 relative overflow-hidden">
+//           <motion.div 
+//             animate={{ x: ["-100%", "100%"] }}
+//             transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+//             className="absolute inset-0 bg-white"
+//           />
+//        </div>
+//        <span className="text-[9px] tracking-[1em] uppercase opacity-40">System_Booting</span>
+//     </div>
+//   </div>
+// );
+
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
 
 interface Item {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   price: string;
@@ -17,196 +196,137 @@ interface Item {
   approach: string;
 }
 
-export default function ItemsSimple() {
+export default function AvantGardeShowcase() {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const mockItems: Item[] = [
-      {
-        id: 1,
-        name: "DOG STUDIO CLONE",
-        description: "A high-end creative portfolio clone featuring advanced 3D web technologies. It showcases an interactive 3D animal model with custom Matcap shaders that transition smoothly based on user interaction.",
-        price: "299.99",
-        image: "https://i.postimg.cc/wjqNjskP/react-dog-1-14-2026-12-08-17-PM.png",
-        category: "Creative_Tech",
-        year: "2026",
-        tech: ["React", "Three.js", "GLSL"],
-        approach: "Utilizing custom Matcap shaders and R3F for seamless 3D performance."
-      },
-      {
-        id: 2,
-        name: "B2B-Asset Verse",
-        description: "AssetVerse is a B2B web application that helps organizations efficiently manage physical assets. It enables companies to track assignments, reducing loss and improving transparency.",
-        price: "449.99",
-        image: "https://i.postimg.cc/zG40bjPn/ASSET-VERSE-Mozilla-Firefox-12-27-2025-9-27-24-PM.png",
-        category: "B2B_SaaS",
-        year: "2025",
-        tech: ["Next.js", "PostgreSQL", "Tailwind"],
-        approach: "Architecting a multi-tenant database structure for enterprise scalability."
-      },
-      {
-        id: 3,
-        name: "Creative Studio",
-        description: "A visually bold and experimental creative studio portfolio focused on high-impact layouts, kinetic typography, and modern digital aesthetics.",
-        price: "399.99",
-        image: "https://i.postimg.cc/76tChBKv/(70-Reacting-to-21-Design-Portfolios-in-22-Minutes-You-Tube-Mozilla-Firefox-1-11-2026-4-00-31-PM.png",
-        category: "Digital_Design",
-        year: "2026",
-        tech: ["Framer Motion", "React", "GSAP"],
-        approach: "Experimental typography and interaction-led layout transitions."
-      }
-    ];
-
-    setTimeout(() => {
-      setItems(mockItems);
-      setLoading(false);
-    }, 1000);
+    fetch("https://server-1-1-6g3a.onrender.com/items")
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data);
+        setLoading(false);
+      });
   }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-[#080808] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-t-2 border-white animate-spin rounded-full mx-auto mb-4"></div>
-          <p className="text-white text-[10px] tracking-[0.5em] uppercase">Initializing_System</p>
-        </div>
-      </div>
-    );
-  }
+  if (loading) return <LoadingSequence />;
 
   return (
-    <main
-      style={{ fontFamily: "var(--font-display)" }}
-      className="bg-[var(--background)] text-white font-sans"
-    >
-      <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-baseline mix-blend-difference">
-        <Link href="/" className="text-xs tracking-[0.5em] hover:text-[var(--accent)] transition-colors uppercase font-medium">Home</Link>
-        <div className="text-[9px] tracking-[0.3em] text-white/50 uppercase font-medium">Scroll to Explore</div>
-      </nav>
+    <div className="bg-[#050505] text-[#fff] selection:bg-[#fff] selection:text-[#000]">
+      {/* 1. FIXED UI ELEMENTS */}
+   
 
-      {/* Projects List */}
-      {items.map((item, index) => (
-        <ProjectSection key={item.id} item={item} index={index} />
-      ))}
+      {/* 2. MAIN SHOWCASE */}
+      <main>
+        {items.map((item, index) => (
+          <ShowcaseSection key={item._id} item={item} index={index} total={items.length} />
+        ))}
+      </main>
 
-      <footer className="h-[50vh] flex flex-col items-center justify-center border-t border-[var(--border)]">
-        <h2 className="text-[15vw] font-bold opacity-5 select-none tracking-tight">FINISH</h2>
-        <Link href="/" className="text-xs tracking-[1em] mt-[-2vw] hover:text-[var(--accent)] transition-colors uppercase font-medium">
-          Back to Start
-        </Link>
+      {/* 3. BIG CTA FOOTER */}
+      <footer className="h-screen flex flex-col items-center justify-center border-t border-white/5">
+        <span className="text-[10px] tracking-[2em] uppercase opacity-20 mb-10">End of Line</span>
+        <h2 className="text-[15vw] galgo-font font-bold tracking-tighter uppercase italic opacity-5">SINNERS</h2>
       </footer>
-    </main>
+    </div>
   );
 }
 
-interface ProjectSectionProps {
-  item: Item;
-  index: number;
-}
+const ShowcaseSection = ({ item, index, total }: { item: Item; index: number; total: number }) => {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
 
-const ProjectSection = ({ item, index }: ProjectSectionProps) => {
+  // Parallax Logic
+  const yText = useTransform(scrollYProgress, [0, 1], [300, -300]);
+  const yImage = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  const opacityInfo = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0, 1, 0]);
+  const smoothYText = useSpring(yText, { stiffness: 100, damping: 30 });
+
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center py-32 px-6 md:px-20 border-b border-white/5 overflow-hidden">
+    <section ref={sectionRef} className="relative h-[150vh] w-full border-b border-white/5 flex items-center justify-center overflow-hidden">
       
-      {/* Background Floating Number */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.03] select-none">
-        <span className="text-[40vw] leading-none font-bold">0{index + 1}</span>
+      {/* 🏷️ Project Index */}
+      <div className="absolute top-24 left-10 flex flex-col items-start gap-4 z-40">
+        <span className="text-[9px] font-mono opacity-40 tracking-tighter italic">ITEM_{index + 1} / {total}</span>
+        <div className="h-[1px] w-12 bg-white/30" />
       </div>
 
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
-        
-        {/* Left: Branding & Meta */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="lg:col-span-4 flex flex-col justify-between"
-        >
-          <div className="space-y-6">
-            <span className="text-[10px] tracking-[0.5em] text-gray-500 uppercase">Product / 0{index + 1}</span>
-            <h2 className="text-5xl md:text-7xl font-normal leading-[0.9] uppercase tracking-tighter">
-              {item.name}
-            </h2>
-            <div className="flex gap-4">
-              <span className="px-3 py-1 border border-white/20 text-[9px] rounded-full uppercase italic">{item.year}</span>
-              <span className="px-3 py-1 border border-white/20 text-[9px] rounded-full uppercase">{item.category}</span>
-            </div>
-          </div>
+      {/* 🖼️ Main Image (Maintained Aspect Ratio & Visible) */}
+      <motion.div 
+        style={{ y: yImage }}
+        className="relative w-[90vw] md:w-[55vw] lg:w-[45vw] aspect-[16/10] z-0 overflow-hidden rounded-sm"
+      >
+        <Image 
+          src={item.image} 
+          alt={item.name} 
+          fill 
+          className="object-cover transition-all duration-700 hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
+        />
+        {/* Subtle Overlay to make text pop but keep image clear */}
+        <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors duration-500" />
+      </motion.div>
 
-          <div className="pt-10 lg:pt-0 space-y-6">
-            <p  style={{
-    fontFamily: '"Ubuntu Sans", sans-serif',
-    fontOpticalSizing: "auto",
-    fontStyle: "normal",
-    fontVariationSettings: '"wdth" 100',
-  }} className="text-sm text-gray-400 leading-relaxed max-w-xs font-bold uppercase">
-              {item.description}
-            </p>
-            <div className="flex flex-col gap-4">
-               <div className="text-2xl font-light tracking-widest">${item.price}</div>
-               <Link href={`/items/${item.id}`} className="text-[10px] tracking-[0.4em] underline decoration-white/20 hover:decoration-white transition-all uppercase">
-                 View_Details_System
-               </Link>
-            </div>
-          </div>
-        </motion.div>
+      {/* 🖋️ Floating Typography (Background Layer) */}
+      <motion.div 
+        style={{ y: smoothYText }}
+        className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none"
+      >
+        <h2 className="text-[14vw] galgo-font font-bold uppercase tracking-tighter mix-blend-difference leading-none opacity-90">
+          {item.name}
+        </h2>
+      </motion.div>
 
-        {/* Right: Image Section */}
-        <motion.div 
-          initial={{ clipPath: "inset(0 100% 0 0)" }}
-          whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-          transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
-          viewport={{ once: true }}
-          className="lg:col-span-8 group relative"
-        >
-          <div className="overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 ease-in-out shadow-2xl bg-white/5 aspect-video">
-             <motion.div
-               whileHover={{ scale: 1.05 }}
-               transition={{ duration: 1 }}
-               className="w-full h-full relative"
-             >
-               <Image 
-                 src={item.image} 
-                 alt={item.name} 
-                 fill
-                 className="object-cover"
-               />
-             </motion.div>
-             
-             {/* Hover Overlay */}
-             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                <p className="text-[10px] tracking-[1em] translate-y-4 group-hover:translate-y-0 transition-transform font-bold uppercase">Discover details</p>
-             </div>
-          </div>
+      {/* 📄 Detail Box (Right Aligned) */}
+      <div className="absolute bottom-20 right-6 md:right-16 max-w-[320px] space-y-8 z-30 text-right">
+        <motion.div style={{ opacity: opacityInfo }} className="space-y-6">
+          <p className="text-[9px] tracking-[0.5em] uppercase text-blue-500 font-bold">Concept_Brief</p>
+          <p className="text-xs md:text-sm uppercase tracking-widest leading-loose font-medium text-white/90">
+            {item.description}
+          </p>
           
-          {/* Tech Stack below image */}
-          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 opacity-30">
-            {item.tech?.map((t, i) => (
-              <span key={i} className="text-[9px] uppercase tracking-widest">{t}</span>
+          <div className="flex flex-wrap gap-2 justify-end pt-2">
+            {item.tech.map((t, i) => (
+              <span key={i} className="text-[8px] border border-white/20 px-2 py-1 uppercase tracking-tighter bg-white/5">
+                {t}
+              </span>
             ))}
           </div>
         </motion.div>
+
+        <div className="flex flex-col items-end gap-5 pt-8 border-t border-white/10">
+          <div className="flex flex-col items-end">
+            <span className="text-[9px] uppercase tracking-widest opacity-30 mb-1 italic">License_Fee</span>
+            <span className="text-5xl font-light tracking-tighter">${item.price}</span>
+          </div>
+          <button className="group relative text-[10px] font-bold uppercase tracking-[0.6em] py-4 px-10 bg-white text-black hover:bg-blue-600 hover:text-white transition-all duration-500 overflow-hidden">
+            <span className="relative z-10">Acquire_Asset</span>
+          </button>
+        </div>
       </div>
 
-      {/* Bottom Technical Approach */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="w-full mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-start gap-10"
-      >
-        <div className="max-w-xl">
-          <h4 className="text-[9px] tracking-[0.5em] text-gray-600 mb-4 uppercase italic">Technical_Approach</h4>
-          <p className="text-xl md:text-3xl font-light leading-[1.2] text-gray-200 uppercase tracking-tighter">
-            {item.approach}
-          </p>
-        </div>
-        <div className="hidden md:block text-[8px] text-gray-800 tracking-[0.5em] [writing-mode:vertical-lr] rotate-180">
-          ESTD. 2026 // SYSTEM_DESIGN
-        </div>
-      </motion.div>
+      {/* ⚙️ Methodology (Bottom Left) */}
+      <div className="absolute bottom-20 left-10 max-w-[250px] hidden lg:block z-30 opacity-40">
+        <span className="text-[9px] tracking-[0.4em] uppercase block mb-3 font-bold">0{index + 1} — Methodology</span>
+        <p className="text-[10px] leading-relaxed uppercase tracking-[0.2em] font-light italic">{item.approach}</p>
+      </div>
     </section>
   );
 };
+
+const LoadingSequence = () => (
+  <div className="h-screen bg-[#050505] flex flex-col items-center justify-center gap-6">
+    <div className="h-[1px] w-32 bg-white/10 relative overflow-hidden">
+      <motion.div 
+        animate={{ x: ["-100%", "100%"] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 bg-white"
+      />
+    </div>
+    <span className="text-[8px] font-mono uppercase tracking-[1em] opacity-40 animate-pulse">Syncing_Nodes</span>
+  </div>
+);
