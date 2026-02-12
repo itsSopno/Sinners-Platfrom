@@ -62,30 +62,35 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {session ? (
-            <div className="flex items-center gap-6 border-l border-white/20 pl-8 ml-2">
-              <Link
-                href="/add-item"
-                className="text-[9px] tracking-[0.3em] text-white/60 hover:text-[var(--accent)] uppercase transition-colors duration-200"
-              >
-                Add_Work
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="text-white/60 hover:text-white transition-colors duration-200"
-                aria-label="Sign out"
-              >
-                <FiLogOut className="w-4 h-4" />
-              </button>
-            </div>
-          ) : (
-            <Link
-              href="/login"
-              className="text-[10px] tracking-[0.35em] border border-white/25 px-5 py-2.5 rounded-full hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-[var(--accent-foreground)] transition-all duration-300 uppercase font-medium"
-            >
-              Access_System
-            </Link>
-          )}
+         {session ? (
+  <div className="flex items-center gap-6 border-l border-white/20 pl-8 ml-2">
+    
+
+    {session.user?.role === 'admin' && (
+      <Link
+        href="/add-item"
+        className="text-[9px] tracking-[0.3em] text-white/60 hover:text-[var(--accent)] uppercase transition-colors duration-200"
+      >
+        Add_Work
+      </Link>
+    )}
+
+    <button
+      onClick={handleLogout}
+      className="text-white/60 hover:text-white transition-colors duration-200"
+      aria-label="Sign out"
+    >
+      <FiLogOut className="w-4 h-4" />
+    </button>
+  </div>
+) : (
+  <Link
+    href="/login"
+    className="text-[10px] tracking-[0.35em] border border-white/25 px-5 py-2.5 rounded-full hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-[var(--accent-foreground)] transition-all duration-300 uppercase font-medium"
+  >
+    Access_System
+  </Link>
+)}
         </nav>
 
         <button

@@ -30,18 +30,34 @@ export default function Contact(): React.JSX.Element {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setSubmitting(true); // সাবমিশন শুরু
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
-    setSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setSuccess(true);
-    setTimeout(() => {
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setSuccess(false);
-    }, 3000);
-    setSubmitting(false);
-  };
+  try {
+    const res = await fetch("https://server-1-1-6g3a.onrender.com/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) throw new Error("Failed to send data");
+
+    const data = await res.json();
+    console.log('Message sent successfully!');
+    
+    setSuccess(true); 
+    setFormData({ name: "", email: "", subject: "", message: "" }); // ফর্ম খালি করা
+  } catch (err) {
+    console.log(err);
+    alert('Something went wrong');
+  } finally {
+    setSubmitting(false);  
+  }
+};
+  
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },

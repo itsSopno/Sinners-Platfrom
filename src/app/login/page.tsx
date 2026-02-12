@@ -144,7 +144,7 @@ export default function Login(): React.JSX.Element {
           <div className="mt-12 pt-8 border-t border-white/5">
             <div className="flex justify-between items-center text-[9px] tracking-widest text-gray-600">
               <span className="uppercase">No account?</span>
-              <Link href="#" className="text-white hover:underline underline-offset-4 uppercase font-bold">
+              <Link href="/contact" className="text-white hover:underline underline-offset-4 uppercase font-bold">
                 Create_Identity
               </Link>
             </div>

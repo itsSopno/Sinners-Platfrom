@@ -28,7 +28,7 @@ export default function About(): React.JSX.Element {
             <span className="text-[10px] tracking-[0.6em] text-[#737373] uppercase mb-8 block font-semibold">
               Agency_Manifesto
             </span>
-            <h2 className="text-6xl md:text-8xl galgo-font font-bold leading-[0.85] tracking-tighter uppercase mb-10">
+            <h2 className="text-4xl md:text-8xl galgo-font font-bold leading-[0.85] tracking-tighter uppercase mb-10">
               Defining <br />
               Digital <br />
               <span className="text-[var(--accent)] font-semibold">Authority.</span>

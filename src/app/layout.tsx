@@ -3,6 +3,7 @@ import "./globals.css";
 import ClientRoot from "./ClientRoot";
 import { Metadata } from "next";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
