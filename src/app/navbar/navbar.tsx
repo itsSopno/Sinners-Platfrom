@@ -15,9 +15,11 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   const navLinks = [
+    // {name :"STORY", href:"/board"},
+     {name : "STORY", href :"/story"},
     { name: "WORKS", href: "/items" },
     { name: "STUDIO", href: "/about" },
-    { name: "SERVICES", href: "/services" },
+    // { name: "SERVICES", href: "/services" },
     { name: "CONTACT", href: "/contact" },
   ];
 

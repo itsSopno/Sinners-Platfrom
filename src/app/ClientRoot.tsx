@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import Navbar from "./navbar/navbar";
 import Loading from "./Loading/page";
 import { AppProvider } from "../contexts/AppContext";
+import Footer from "./footer/footer";
 
 interface ClientRootProps {
   children: React.ReactNode;

@@ -26,3 +26,22 @@ export default function Navbar() {
     </nav>
   );
 }
+
+ <section className="h-[200vh] relative">
+         <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+           <motion.div 
+             style={{ scale: imageScale, clipPath: useTransform(scrollYProgress, [0.2, 0.5], ["inset(40%)", "inset(0%)"]) }}
+             className="w-full h-full"
+           >
+             <img 
+              src="https://i.pinimg.com/1200x/1d/c2/52/1dc252c6072e0d922cc7bb055e744da9.jpg" 
+                 className="w-full h-full object-cover grayscale brightness-50"
+                className="w-full h-full object-cover"
+                alt="Sinners Aesthetic"
+              />
+               <div className="absolute inset-0 flex items-center justify-center">
+                 <h2 className="font-3xl md:text-6xl font-black uppercase text-white galgo-font drop-shadow-2xl">Bury the Norms</h2>
+              </div>
+            </motion.div>
+          </div>
+        </section>
