@@ -1,25 +1,27 @@
-
-name	"NEZIN"
-description	"NEZIN  is an immersive, high-performance e-commerce platform and archival system. It merges industrial design philosophy with a technical, "command-center" aesthetic, providing a seamless experience for both users and administrators."
-price	"secret"
-"image":	"https://i.ibb.co/4ZmLSzp3/Gemini-Generated-Image-nqgymrnqgymrnqgy.png"
-category	"SaaS"
-year	"2026"
-"technology	" : 
-0	"React JS"
-1	"Tailwind CSS"
-2	"Node.js"
-3	"MongoDB"
-"approach":	"NEZIN is an immersive, high-performance e-commerce platform and archival system.",
-"live" : "https://nezin.vercel.app"
-
 {
-  "name": "NEZIN",
-  "year": "2026",
-  "category": "SaaS",
-  "price": "Secret",
-  "image": "https://i.ibb.co/4ZmLSzp3/Gemini-Generated-Image-nqgymrnqgymrnqgy.png",
-  "live_url": "https://nezin.vercel.app",
-  "technologY": ["React JS", "Tailwind CSS", "Node.js", "MongoDB"],
-  "approach": "An immersive, high-performance e-commerce platform and archival system merging industrial design philosophy with a technical command-center aesthetic."
+  
+  "account_name ": "",
+  "email" : "",
+  "profile_image" :"",
+  "cover_image":"",
+  "gender" : "",
+  "country" : "",
+  "title_name" : "",
+  "skills ":["",""],
+  "address" :"",
+  "description":"",
+  "projects": [
+    {
+      "id": "",
+      "name": "",
+      "description": "",
+      "approach": "",
+      "image_one": "",
+      "image_two":"",
+      "image_three":"",
+  "tech" :[""]
+    },
+    
+  ],
+ 
 }
