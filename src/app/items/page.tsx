@@ -125,10 +125,10 @@ const ShowcaseSection = ({ item, index, total }: { item: Item; index: number; to
         <div className="flex flex-col items-end gap-5 pt-8 border-t border-white/10">
           <div className="flex flex-col items-end">
             <span className="text-[9px] uppercase tracking-widest opacity-30 mb-1 italic">License_Fee</span>
-            <span className="text-5xl font-light tracking-tighter">${item.price}</span>
+          
           </div>
           <Link href={item.live || `/items/${item._id}`} className="group relative text-[10px] font-bold uppercase tracking-[0.6em] py-4 px-10 bg-white text-black hover:bg-blue-600 hover:text-white transition-all duration-500 overflow-hidden block text-center">
-            <span className="relative z-10">Acquire_Asset</span>
+            <span className="relative z-10">Visit Live site </span>
           </Link>
         </div>
       </div>
