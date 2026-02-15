@@ -6,7 +6,7 @@ import { Plus, Trash2, UploadCloud, Loader2, Globe, User, Briefcase } from "luci
 
 // Configs
 const IMGBB_API_KEY = "4c8ddf7ff8e6cc2277a637b2f504274a";
-const SERVER_URL = "https://server-1-1-6g3a.onrender.com/items";
+const SERVER_URL = "https://server-1-1-6g3a.onrender.com/developer";
 
 export default function FullyCompletedForm() {
   const { data: session } = useSession();
@@ -102,7 +102,7 @@ export default function FullyCompletedForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(, {
+      const response = await fetch(SERVER_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

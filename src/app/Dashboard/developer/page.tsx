@@ -1,4 +1,4 @@
-"use client";
+﻿'use client';
 
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
@@ -109,13 +109,13 @@ export default function FullyCompletedForm() {
       });
 
       if (response.ok) {
-        alert("✅ Portfolio Deployed Successfully!");
+        alert("âœ… Portfolio Deployed Successfully!");
       } else {
-        alert("❌ Deployment Failed. Check Server.");
+        alert("âŒ Deployment Failed. Check Server.");
       }
     } catch (error) {
       console.error("Submit Error:", error);
-      alert("❌ Connection Error.");
+      alert("âŒ Connection Error.");
     } finally {
       setIsSubmitting(false);
     }
