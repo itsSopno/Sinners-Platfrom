@@ -89,7 +89,7 @@ const Navbar = () => {
                   </summary>
                   <ul className="absolute top-full right-0 mt-6 p-4 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/5 w-56 space-y-2 shadow-2xl animate-in fade-in slide-in-from-top-2">
                     <li onClick={closeDropdown}>
-                      <Link href="/Dashboard" className="block text-[8px] tracking-[0.3em] text-white/40 hover:text-[var(--accent)] p-2 transition-colors uppercase">Network_Grid</Link>
+                      <Link href="/developer" className="block text-[8px] tracking-[0.3em] text-white/40 hover:text-[var(--accent)] p-2 transition-colors uppercase">Network_Grid</Link>
                     </li>
                     <li onClick={closeDropdown}>
                       <Link href="/submenu-2" className="block text-[8px] tracking-[0.3em] text-white/40 hover:text-[var(--accent)] p-2 transition-colors uppercase">System_Logs</Link>
