@@ -41,7 +41,7 @@ export default function FullyCompletedForm() {
   // Auto-sync email from NextAuth session
   useEffect(() => {
     if (session?.user?.email) {
-      setFormData((prev) => ({ ...prev, email: session.user.email as string }));
+      setFormData((prev) => ({ ...prev, email: session.user!.email as string }));
     }
   }, [session]);
 
@@ -220,7 +220,7 @@ export default function FullyCompletedForm() {
 
 // --- Internal UI Components ---
 
-const InputField = ({ label, value, onChange }: any) => (
+const InputField = ({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) => (
   <div className="flex flex-col gap-2">
     <label className="text-[9px] uppercase tracking-[0.3em] text-white/40">{label}</label>
     <input 
@@ -231,7 +231,7 @@ const InputField = ({ label, value, onChange }: any) => (
   </div>
 );
 
-const ImageUploadBox = ({ label, url, onUpload, round = false }: any) => (
+const ImageUploadBox = ({ label, url, onUpload, round = false }: { label: string; url: string; onUpload: (file: File) => void; round?: boolean }) => (
   <div className="space-y-4">
     <label className="text-[9px] uppercase tracking-[0.5em] text-white/40">{label}</label>
     <div className={`relative ${round ? 'w-32 h-32 rounded-full' : 'w-full h-40'} bg-zinc-900 border border-white/5 overflow-hidden group cursor-pointer`}>
@@ -241,7 +241,7 @@ const ImageUploadBox = ({ label, url, onUpload, round = false }: any) => (
   </div>
 );
 
-const ProjectImg = ({ label, url, onUpload }: any) => (
+const ProjectImg = ({ label, url, onUpload }: { label: string; url: string; onUpload: (file: File) => void }) => (
   <div className="space-y-2">
     <div className="aspect-square bg-black border border-white/5 relative overflow-hidden group flex items-center justify-center">
       {url ? <img src={url} className="w-full h-full object-cover" /> : <span className="text-[8px] opacity-10 uppercase tracking-widest">{label}</span>}
