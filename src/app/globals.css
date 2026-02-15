@@ -72,8 +72,8 @@ body {
 
 @font-face {
   font-family: 'Misto';
-  src: url('../Font/Misto.woff') format('woff2'),
-       url('../Font/Misto.woff2') format('woff');
+  src: url('../Font/Misto.woff') format('opentype'),
+       url('../Font/Misto.woff2') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
